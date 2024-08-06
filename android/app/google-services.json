@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "657203047416",
+    "project_id": "ticktock-54bb7",
+    "storage_bucket": "ticktock-54bb7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657203047416:android:3e0a39555e0dbf5b82440d",
+        "android_client_info": {
+          "package_name": "site.tunckankilic.tvst"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5hUbVglYesKLTug3PM-1fp7GhIyRBp58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
