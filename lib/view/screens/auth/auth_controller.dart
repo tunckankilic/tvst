@@ -1,17 +1,24 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tvst/consts/consts_shelf.dart';
 import 'package:tvst/models/user.dart' as model;
-import 'package:tvst/view/screens/auth/auth_shelf.dart';
-import 'package:tvst/view/screens/home_screen.dart';
+import 'package:tvst/view/screens/auth/screens/auth_shelf.dart';
+import 'package:tvst/view/screens/home/home_screen.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
   late Rx<User?> _user;
   late Rx<File?> _pickedImage;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  TextEditingController? get emailController => _emailController;
+  TextEditingController? get passwordController => _passwordController;
 
   File? get profilePhoto => _pickedImage.value;
   User? get user => _user.value!;
@@ -26,7 +33,7 @@ class AuthController extends GetxController {
 
   _setInitialScreen(User? user) {
     if (user == null) {
-      Get.offAll(() => LoginScreen());
+      Get.offAll(() => const LoginScreen());
     } else {
       Get.offAll(() => const HomeScreen());
     }
