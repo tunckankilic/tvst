@@ -6,7 +6,7 @@ import 'package:tvst/view/screens/auth/screens/auth_shelf.dart';
 import 'package:tvst/view/widgets/text_input_field.dart';
 
 class SignupScreen extends StatelessWidget {
-  SignupScreen({Key? key}) : super(key: key);
+  SignupScreen({super.key});
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -144,7 +144,7 @@ class SignupScreen extends StatelessWidget {
               color: Theme.of(context).textTheme.bodySmall?.color),
         ),
         GestureDetector(
-          onTap: () => Get.off(() => LoginScreen()),
+          onTap: () => Get.off(() => const LoginScreen()),
           child: Text(
             'Login',
             style: TextStyle(

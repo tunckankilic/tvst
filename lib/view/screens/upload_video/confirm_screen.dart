@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tvst/consts/consts_shelf.dart';
 import 'package:tvst/view/screens/upload_video/upload_video_controller.dart';
 import 'package:tvst/view/screens/screens_shelf.dart';
 import 'package:tvst/view/widgets/text_input_field.dart';
@@ -57,10 +56,11 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
           style: Theme.of(context)
               .textTheme
               .titleLarge
-              ?.copyWith(color: AppColors.text),
+              ?.copyWith(color: Theme.of(context).cardColor),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppColors.text, size: 24.sp),
+          icon: Icon(Icons.arrow_back,
+              color: Theme.of(context).cardColor, size: 24.sp),
           onPressed: () => Get.back(),
         ),
       ),
@@ -99,7 +99,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
               )
             : Center(
                 child: CircularProgressIndicator(
-                  color: AppColors.primary,
+                  color: Theme.of(context).primaryColor,
                   strokeWidth: 3.w,
                 ),
               ),
@@ -134,7 +134,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
       child: ElevatedButton(
         onPressed: () => _shareVideo(),
         style: ElevatedButton.styleFrom(
-          foregroundColor: AppColors.primary,
+          foregroundColor: Theme.of(context).primaryColor,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.r)),
           padding: EdgeInsets.symmetric(horizontal: 50.w, vertical: 15.h),
@@ -143,7 +143,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
           'Share!',
           style: TextStyle(
             fontSize: 20.sp,
-            color: AppColors.text,
+            color: Theme.of(context).cardColor,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -164,7 +164,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
             children: [
               CircularProgressIndicator(
                 value: uploadVideoController.overallProgress,
-                color: AppColors.primary,
+                color: Theme.of(context).primaryColor,
                 strokeWidth: 3.w,
               ),
               SizedBox(height: 20.h),
@@ -200,8 +200,8 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
       Get.snackbar(
         'Success',
         'Your video has been shared!',
-        backgroundColor: AppColors.primary,
-        colorText: AppColors.text,
+        backgroundColor: Theme.of(context).primaryColor,
+        colorText: Theme.of(context).cardColor,
         snackPosition: SnackPosition.TOP,
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
         margin: EdgeInsets.all(8.w),
@@ -213,7 +213,7 @@ class _ConfirmScreenState extends State<ConfirmScreen> {
         'Error',
         'Failed to upload video. Please try again.',
         backgroundColor: Colors.red,
-        colorText: AppColors.text,
+        colorText: Theme.of(context).cardColor,
         snackPosition: SnackPosition.TOP,
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
         margin: EdgeInsets.all(8.w),

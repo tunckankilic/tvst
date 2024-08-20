@@ -4,7 +4,7 @@ import 'package:tvst/consts/consts_shelf.dart';
 import 'package:tvst/view/shared/custom_icon.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: AppColors.primary.withOpacity(0.1),
+              color: Theme.of(context).primaryColor.withOpacity(0.1),
               blurRadius: 10,
               offset: const Offset(0, -5),
             ),
@@ -34,8 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           type: BottomNavigationBarType.fixed,
           backgroundColor: Theme.of(context).colorScheme.surface,
-          selectedItemColor: AppColors.primary,
-          unselectedItemColor: AppColors.textSecondary,
+          selectedItemColor: Theme.of(context).primaryColor,
+          unselectedItemColor: Theme.of(context).colorScheme.secondary,
           currentIndex: pageIdx,
           selectedFontSize: 12.sp,
           unselectedFontSize: 12.sp,
@@ -61,7 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
   BottomNavigationBarItem _buildNavItem(IconData icon, String label) {
     return BottomNavigationBarItem(
       icon: Icon(icon, size: 30.sp),
-      activeIcon: Icon(icon, size: 30.sp, color: AppColors.primary),
+      activeIcon:
+          Icon(icon, size: 30.sp, color: Theme.of(context).primaryColor),
       label: label,
     );
   }

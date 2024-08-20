@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:tvst/consts/consts_shelf.dart';
 import 'package:tvst/view/screens/auth/auth_controller.dart';
 import 'package:tvst/view/screens/auth/screens/auth_shelf.dart';
 import 'package:tvst/view/widgets/text_input_field.dart';
 
 class LoginScreen extends GetView<AuthController> {
-  LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

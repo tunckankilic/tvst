@@ -51,9 +51,9 @@ class AuthWrapper extends StatelessWidget {
           return const CircularProgressIndicator(); // Yükleme göstergesi
         } else {
           if (snapshot.data == true) {
-            return LoginScreen();
+            return const LoginScreen();
           } else {
-            return LoginScreen();
+            return const LoginScreen();
           }
         }
       },

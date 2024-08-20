@@ -1,6 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,7 +8,7 @@ import 'package:tvst/view/screens/screens_shelf.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String uid;
-  const ProfileScreen({Key? key, required this.uid}) : super(key: key);
+  const ProfileScreen({super.key, required this.uid});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -36,7 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       } else {
         // Eğer önceki sayfa yoksa (direkt bu sayfaya gelindiyse), ana sayfaya yönlendir
         Get.offAll(
-          () => HomeScreen(),
+          () => const HomeScreen(),
         );
       }
     }
@@ -48,25 +46,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
       init: ProfileController(),
       builder: (controller) {
         if (controller.user.isEmpty) {
-          return const Center(
-            child: CircularProgressIndicator(color: AppColors.primary),
+          return Center(
+            child: CircularProgressIndicator(
+                color: Theme.of(context).primaryColor),
           );
         }
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: AppColors.background,
+            backgroundColor: Theme.of(context).colorScheme.surface,
             leading: widget.uid == authController.user!.uid
                 ? IconButton(
                     icon: Icon(Icons.arrow_back, size: 24.sp),
                     onPressed: _handleNavigation,
                   )
-                : SizedBox.shrink(),
+                : const SizedBox.shrink(),
             actions: [Icon(Icons.more_horiz, size: 24.sp)],
             title: Text(
               controller.user['name'],
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: AppColors.text,
+                color: Theme.of(context).secondaryHeaderColor,
                 fontSize: 18.sp,
               ),
             ),
@@ -99,10 +98,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             imageUrl: controller.user['profilePhoto'],
             height: 100.r,
             width: 100.r,
-            placeholder: (context, url) =>
-                CircularProgressIndicator(color: AppColors.primary),
-            errorWidget: (context, url, error) =>
-                Icon(Icons.error, size: 50.sp, color: AppColors.secondary),
+            placeholder: (context, url) => CircularProgressIndicator(
+                color: Theme.of(context).primaryColor),
+            errorWidget: (context, url, error) => Icon(Icons.error,
+                size: 50.sp, color: Theme.of(context).secondaryHeaderColor),
           ),
         ),
         SizedBox(height: 15.h),
@@ -128,12 +127,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           style: TextStyle(
               fontSize: 20.sp,
               fontWeight: FontWeight.bold,
-              color: AppColors.text),
+              color: Theme.of(context).primaryColor),
         ),
         SizedBox(height: 5.h),
         Text(
           label,
-          style: TextStyle(fontSize: 14.sp, color: AppColors.textSecondary),
+          style: TextStyle(
+              fontSize: 14.sp, color: Theme.of(context).secondaryHeaderColor),
         ),
       ],
     );
@@ -141,7 +141,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _buildDivider() {
     return Container(
-      color: AppColors.textSecondary.withOpacity(0.5),
+      color: Theme.of(context).secondaryHeaderColor.withOpacity(0.5),
       width: 1.w,
       height: 15.h,
       margin: EdgeInsets.symmetric(horizontal: 15.w),
@@ -153,7 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       width: 140.w,
       height: 47.h,
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.primary),
+        border: Border.all(color: Theme.of(context).primaryColor),
         borderRadius: BorderRadius.circular(5.r),
       ),
       child: Center(
@@ -172,10 +172,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ? 'Unfollow'
                     : 'Follow',
             style: TextStyle(
-              fontSize: 15.sp,
-              fontWeight: FontWeight.bold,
-              color: AppColors.primary,
-            ),
+                fontSize: 15.sp,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).primaryColor),
           ),
         ),
       ),
@@ -198,9 +197,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         return CachedNetworkImage(
           imageUrl: thumbnail,
           fit: BoxFit.cover,
-          placeholder: (context, url) => Container(color: AppColors.surface),
+          placeholder: (context, url) =>
+              Container(color: Theme.of(context).scaffoldBackgroundColor),
           errorWidget: (context, url, error) =>
-              Icon(Icons.error, color: AppColors.secondary),
+              Icon(Icons.error, color: Theme.of(context).secondaryHeaderColor),
         );
       },
     );

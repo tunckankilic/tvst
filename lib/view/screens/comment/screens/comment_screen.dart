@@ -7,7 +7,7 @@ import 'package:timeago/timeago.dart' as tago;
 
 class CommentScreen extends GetView<CommentController> {
   final String id;
-  CommentScreen({Key? key, required this.id}) : super(key: key);
+  CommentScreen({super.key, required this.id});
 
   final TextEditingController _controller = TextEditingController();
 

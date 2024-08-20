@@ -9,17 +9,17 @@ import 'package:tvst/view/shared/circle_animation.dart';
 import 'package:tvst/view/shared/video_player_item.dart';
 
 class VideoScreen extends StatelessWidget {
-  VideoScreen({Key? key}) : super(key: key);
+  VideoScreen({super.key});
 
   final VideoController videoController = Get.put(VideoController());
 
-  Widget buildProfile(String profilePhoto) {
+  Widget buildProfile(String profilePhoto, BuildContext context) {
     return Container(
       width: 60.w,
       height: 60.w,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: AppColors.primary, width: 2.w),
+        border: Border.all(color: Theme.of(context).primaryColor, width: 2.w),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30.w),
@@ -31,14 +31,17 @@ class VideoScreen extends StatelessWidget {
     );
   }
 
-  Widget buildMusicAlbum(String profilePhoto) {
+  Widget buildMusicAlbum(String profilePhoto, BuildContext context) {
     return Container(
       width: 60.w,
       height: 60.w,
       padding: EdgeInsets.all(11.w),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [AppColors.secondary, AppColors.primary],
+          colors: [
+            Theme.of(context).colorScheme.surface,
+            Theme.of(context).primaryColor
+          ],
         ),
         shape: BoxShape.circle,
       ),
@@ -86,7 +89,8 @@ class VideoScreen extends StatelessWidget {
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleLarge
-                                        ?.copyWith(color: AppColors.text),
+                                        ?.copyWith(
+                                            color: Theme.of(context).cardColor),
                                   ),
                                   SizedBox(height: 10.h),
                                   Text(
@@ -94,20 +98,25 @@ class VideoScreen extends StatelessWidget {
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyLarge
-                                        ?.copyWith(color: AppColors.text),
+                                        ?.copyWith(
+                                            color: Theme.of(context).cardColor),
                                   ),
                                   SizedBox(height: 10.h),
                                   Row(
                                     children: [
                                       Icon(Icons.music_note,
-                                          size: 15.w, color: AppColors.primary),
+                                          size: 15.w,
+                                          color:
+                                              Theme.of(context).primaryColor),
                                       SizedBox(width: 5.w),
                                       Text(
                                         data.songName,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium
-                                            ?.copyWith(color: AppColors.text),
+                                            ?.copyWith(
+                                                color: Theme.of(context)
+                                                    .cardColor),
                                       ),
                                     ],
                                   )
@@ -121,30 +130,33 @@ class VideoScreen extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                buildProfile(data.profilePhoto),
+                                buildProfile(data.profilePhoto, context),
                                 SizedBox(height: 20.h),
                                 _buildInteractionButton(
+                                  context: context,
                                   icon: Icons.favorite,
                                   count: data.likes.length,
                                   color: data.likes
                                           .contains(authController.user!.uid)
-                                      ? AppColors.secondary
-                                      : AppColors.text,
+                                      ? Theme.of(context).secondaryHeaderColor
+                                      : Theme.of(context).cardColor,
                                   onTap: () =>
                                       videoController.likeVideo(data.id),
                                 ),
                                 SizedBox(height: 20.h),
                                 _buildInteractionButton(
+                                  context: context,
                                   icon: Icons.comment,
                                   count: data.commentCount,
-                                  color: AppColors.text,
+                                  color: Theme.of(context).cardColor,
                                   onTap: () => Get.to(
                                       () => CommentScreen(id: data.id),
                                       binding: CommentBindings()),
                                 ),
                                 SizedBox(height: 20.h),
                                 CircleAnimation(
-                                    child: buildMusicAlbum(data.profilePhoto)),
+                                    child: buildMusicAlbum(
+                                        data.profilePhoto, context)),
                               ],
                             ),
                           ),
@@ -161,12 +173,12 @@ class VideoScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInteractionButton({
-    required IconData icon,
-    required int count,
-    required Color color,
-    required VoidCallback onTap,
-  }) {
+  Widget _buildInteractionButton(
+      {required IconData icon,
+      required int count,
+      required Color color,
+      required VoidCallback onTap,
+      required BuildContext context}) {
     return Column(
       children: [
         InkWell(
@@ -176,7 +188,7 @@ class VideoScreen extends StatelessWidget {
         SizedBox(height: 7.h),
         Text(
           count.toString(),
-          style: TextStyle(fontSize: 20.sp, color: AppColors.text),
+          style: TextStyle(fontSize: 20.sp, color: Theme.of(context).cardColor),
         )
       ],
     );

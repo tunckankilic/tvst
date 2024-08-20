@@ -79,11 +79,11 @@ class ThemeController extends GetxController {
   void changeThemeMode(ThemeMode themeMode) => Get.changeThemeMode(themeMode);
 }
 
-// Tema değiştirme butonu için örnek widget
+// ThemeChange button Example
 class ThemeToggle extends StatelessWidget {
   final ThemeController themeController = Get.find();
 
-  ThemeToggle({Key? key}) : super(key: key);
+  ThemeToggle({super.key});
 
   @override
   Widget build(BuildContext context) {

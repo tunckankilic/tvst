@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tvst/consts/consts_shelf.dart';
 
 class TextInputField extends StatelessWidget {
   final IconData iconData;
@@ -7,12 +6,12 @@ class TextInputField extends StatelessWidget {
   final TextEditingController textEditingController;
   final bool isObs;
   const TextInputField({
-    Key? key,
+    super.key,
     required this.iconData,
     required this.label,
     required this.textEditingController,
     this.isObs = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
