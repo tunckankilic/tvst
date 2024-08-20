@@ -27,13 +27,13 @@ class TextInputField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
           borderSide: const BorderSide(
-            color: borderColor,
+            color: Colors.blue,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
           borderSide: const BorderSide(
-            color: borderColor,
+            color: Colors.blue,
           ),
         ),
       ),
