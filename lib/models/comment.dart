@@ -1,44 +1,48 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Comment {
-  String username;
-  String comment;
-  final datePublished;
-  List likes;
-  String profilePhoto;
-  String uid;
-  String id;
+class Comment
+{
+  String? userName;
+  String? commentText;
+  String? userProfileImage;
+  String? userID;
+  String? commentID;
+  final publishedDateTime;
+  List? commentLikesList;
 
   Comment({
-    required this.username,
-    required this.comment,
-    required this.datePublished,
-    required this.likes,
-    required this.profilePhoto,
-    required this.uid,
-    required this.id,
+    this.userName,
+    this.commentText,
+    this.userProfileImage,
+    this.userID,
+    this.commentID,
+    this.publishedDateTime,
+    this.commentLikesList,
   });
 
-  Map<String, dynamic> toJson() => {
-        'username': username,
-        'comment': comment,
-        'datePublished': datePublished,
-        'likes': likes,
-        'profilePhoto': profilePhoto,
-        'uid': uid,
-        'id': id,
+  Map<String, dynamic> toJson()=>
+      {
+        "userName": userName,
+        "commentText": commentText,
+        "userProfileImage": userProfileImage,
+        "userID": userID,
+        "commentID": commentID,
+        "publishedDateTime": publishedDateTime,
+        "commentLikesList": commentLikesList,
       };
 
-  static Comment fromSnap(DocumentSnapshot snap) {
-    var snapshot = snap.data() as Map<String, dynamic>;
+  static Comment fromDocumentSnapshot(DocumentSnapshot snapshotDoc)
+  {
+    var documentSnapshot = snapshotDoc.data() as Map<String, dynamic>;
+
     return Comment(
-      username: snapshot['username'],
-      comment: snapshot['comment'],
-      datePublished: snapshot['datePublished'],
-      likes: snapshot['likes'],
-      profilePhoto: snapshot['profilePhoto'],
-      uid: snapshot['uid'],
-      id: snapshot['id'],
+      userName: documentSnapshot["userName"],
+      commentText: documentSnapshot["commentText"],
+      userProfileImage: documentSnapshot["userProfileImage"],
+      userID: documentSnapshot["userID"],
+      commentID: documentSnapshot["commentID"],
+      publishedDateTime: documentSnapshot["publishedDateTime"],
+      commentLikesList: documentSnapshot["commentLikesList"],
     );
   }
 }
