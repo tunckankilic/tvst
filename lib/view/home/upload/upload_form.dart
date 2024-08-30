@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
-import 'package:tvst/view/upload/upload_controller.dart';
+import 'package:tvst/view/home/upload/upload_controller.dart';
 import 'package:video_player/video_player.dart';
-import '../widgets/input_text_widget.dart';
+import '../../widgets/input_text_widget.dart';
 
 class UploadForm extends StatefulWidget {
   final File videoFile;

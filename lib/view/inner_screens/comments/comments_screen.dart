@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:tvst/view/comments/comments_controller.dart';
+import 'package:tvst/view/inner_screens/comments/comments_controller.dart';
 
 class CommentsScreen extends GetView<CommentsController> {
   final String videoID;

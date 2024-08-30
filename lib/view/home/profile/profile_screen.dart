@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tvst/global.dart';
-import 'package:tvst/view/profile/followers_screen.dart';
-import 'package:tvst/view/profile/following_screen.dart';
-import 'package:tvst/view/profile/profile_controller.dart';
-import 'package:tvst/view/video/video_player_profile.dart';
-import 'package:tvst/view/profile/account_settings_screen.dart';
+import 'package:tvst/view/home/profile/followers_screen.dart';
+import 'package:tvst/view/home/profile/following_screen.dart';
+import 'package:tvst/view/home/profile/profile_controller.dart';
+import 'package:tvst/view/inner_screens/video/video_player_profile.dart';
+import 'package:tvst/view/home/profile/account_settings_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatefulWidget {

@@ -4,7 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:tvst/global.dart';
-import 'package:tvst/view/home_screen.dart';
+import 'package:tvst/view/home/home_screen.dart';
 import 'package:tvst/models/video.dart';
 import 'package:video_compress/video_compress.dart';
 

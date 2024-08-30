@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tvst/view/profile/profile_screen.dart';
-import 'package:tvst/view/search/search_controller.dart' as sa;
+import 'package:tvst/view/home/profile/profile_screen.dart';
+import 'package:tvst/view/home/search/search_controller.dart' as sa;
 import 'package:tvst/models/user.dart';
 
 class SearchScreen extends GetView<sa.SearchController> {

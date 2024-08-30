@@ -18,7 +18,6 @@ class LoginScreen extends GetView<AuthenticationController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildLogo(),
                 _buildWelcomeText(),
                 const SizedBox(height: 30),
                 _buildEmailInput(),
@@ -34,10 +33,6 @@ class LoginScreen extends GetView<AuthenticationController> {
         ),
       ),
     );
-  }
-
-  Widget _buildLogo() {
-    return Image.asset("images/tiktok.png", width: 150);
   }
 
   Widget _buildWelcomeText() {

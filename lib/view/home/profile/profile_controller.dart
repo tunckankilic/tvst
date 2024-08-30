@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tvst/global.dart';
-import 'package:tvst/view/home_screen.dart';
+import 'package:tvst/view/home/home_screen.dart';
 import 'package:path/path.dart' as path;
 
 class ProfileController extends GetxController {

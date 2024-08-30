@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tvst/global.dart';
-import 'package:tvst/view/following/followings_video_screen.dart';
-import 'package:tvst/view/for_you/for_you_video_screen.dart';
-import 'package:tvst/view/profile/profile_screen.dart';
-import 'package:tvst/view/search/search_screen.dart';
+import 'package:tvst/view/home/following/followings_video_screen.dart';
+import 'package:tvst/view/home/for_you/for_you_video_screen.dart';
+import 'package:tvst/view/home/profile/profile_screen.dart';
+import 'package:tvst/view/home/search/search_screen.dart';
 import 'package:tvst/view/widgets/upload_custom_icon.dart';
-import 'package:tvst/view/upload/upload_video_screen.dart';
+import 'package:tvst/view/home/upload/upload_video_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

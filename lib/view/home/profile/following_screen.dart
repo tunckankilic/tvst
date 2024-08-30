@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tvst/view/profile/profile_controller.dart';
-import 'package:tvst/view/profile/profile_screen.dart';
+import 'package:tvst/view/home/profile/profile_controller.dart';
+import 'package:tvst/view/home/profile/profile_screen.dart';
 
 class FollowingScreen extends StatelessWidget {
   final String visitedProfileUserID;

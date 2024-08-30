@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tvst/view/comments/comments_screen.dart';
-import 'package:tvst/view/video/video_controller_profile.dart';
+import 'package:tvst/view/inner_screens/comments/comments_screen.dart';
+import 'package:tvst/view/inner_screens/video/video_controller_profile.dart';
 import 'package:tvst/view/widgets/circular_image_animation.dart';
 import 'package:tvst/view/widgets/custom_video_player.dart';
 

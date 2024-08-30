@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tvst/view/auth/login_screen.dart';
-import 'package:tvst/view/home_screen.dart';
+import 'package:tvst/view/home/home_screen.dart';
 import '../../models/user.dart' as userModel;
 
 class AuthenticationController extends GetxController {
