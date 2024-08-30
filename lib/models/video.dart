@@ -1,61 +1,65 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Video {
-  String username;
-  String uid;
-  String id;
-  List likes;
-  int commentCount;
-  int shareCount;
-  String songName;
-  String caption;
-  String videoUrl;
-  String thumbnail;
-  String profilePhoto;
+  String? userID;
+  String? userName;
+  String? userProfileImage;
+  String? videoID;
+  int? totalComments;
+  int? totalShares;
+  List? likesList;
+  String? artistSongName;
+  String? descriptionTags;
+  String? videoUrl;
+  String? thumbnailUrl;
+  int? publishedDateTime;
 
   Video({
-    required this.username,
-    required this.uid,
-    required this.id,
-    required this.likes,
-    required this.commentCount,
-    required this.shareCount,
-    required this.songName,
-    required this.caption,
-    required this.videoUrl,
-    required this.profilePhoto,
-    required this.thumbnail,
+    this.userID,
+    this.userName,
+    this.userProfileImage,
+    this.videoID,
+    this.totalComments,
+    this.totalShares,
+    this.likesList,
+    this.artistSongName,
+    this.descriptionTags,
+    this.videoUrl,
+    this.thumbnailUrl,
+    this.publishedDateTime,
   });
 
   Map<String, dynamic> toJson() => {
-        "username": username,
-        "uid": uid,
-        "profilePhoto": profilePhoto,
-        "id": id,
-        "likes": likes,
-        "commentCount": commentCount,
-        "shareCount": shareCount,
-        "songName": songName,
-        "caption": caption,
+        "userID": userID,
+        "userName": userName,
+        "userProfileImage": userProfileImage,
+        "videoID": videoID,
+        "totalComments": totalComments,
+        "totalShares": totalShares,
+        "likesList": likesList,
+        "artistSongName": artistSongName,
+        "descriptionTags": descriptionTags,
         "videoUrl": videoUrl,
-        "thumbnail": thumbnail,
+        "thumbnailUrl": thumbnailUrl,
+        "publishedDateTime": publishedDateTime,
       };
 
-  static Video fromSnap(DocumentSnapshot snap) {
-    var snapshot = snap.data() as Map<String, dynamic>;
+  static Video fromDocumentSnapshot(DocumentSnapshot snapshot) {
+    var docSnapshot = snapshot.data() as Map<String, dynamic>;
 
     return Video(
-      username: snapshot['username'],
-      uid: snapshot['uid'],
-      id: snapshot['id'],
-      likes: snapshot['likes'],
-      commentCount: snapshot['commentCount'],
-      shareCount: snapshot['shareCount'],
-      songName: snapshot['songName'],
-      caption: snapshot['caption'],
-      videoUrl: snapshot['videoUrl'],
-      profilePhoto: snapshot['profilePhoto'],
-      thumbnail: snapshot['thumbnail'],
+      userID: docSnapshot["userID"],
+      userName: docSnapshot["userName"],
+      userProfileImage: docSnapshot["userProfileImage"],
+      videoID: docSnapshot["videoID"],
+      totalComments: docSnapshot["totalComments"],
+      totalShares: docSnapshot["totalShares"],
+      likesList: docSnapshot["likesList"],
+      artistSongName: docSnapshot["artistSongName"],
+      descriptionTags: docSnapshot["descriptionTags"],
+      videoUrl: docSnapshot["videoUrl"],
+      thumbnailUrl: docSnapshot["thumbnailUrl"],
+      publishedDateTime: docSnapshot["publishedDateTime"],
     );
   }
 }

@@ -956,6 +956,13 @@ PODS:
     - Firebase/Firestore (= 10.29.0)
     - firebase_core
     - Flutter
+  - ffmpeg-kit-ios-https (6.0)
+  - ffmpeg_kit_flutter (6.0.3):
+    - ffmpeg_kit_flutter/https (= 6.0.3)
+    - Flutter
+  - ffmpeg_kit_flutter/https (6.0.3):
+    - ffmpeg-kit-ios-https (= 6.0)
+    - Flutter
   - Firebase/Auth (10.29.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 10.29.0)
@@ -1141,6 +1148,8 @@ PODS:
   - sqflite (0.0.3):
     - Flutter
     - FlutterMacOS
+  - url_launcher_ios (0.0.1):
+    - Flutter
   - video_compress (0.3.0):
     - Flutter
   - video_player_avfoundation (0.0.1):
@@ -1149,6 +1158,7 @@ PODS:
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
+  - ffmpeg_kit_flutter (from `.symlinks/plugins/ffmpeg_kit_flutter/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
@@ -1156,6 +1166,7 @@ DEPENDENCIES:
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - sqflite (from `.symlinks/plugins/sqflite/darwin`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - video_compress (from `.symlinks/plugins/video_compress/ios`)
   - video_player_avfoundation (from `.symlinks/plugins/video_player_avfoundation/darwin`)
 
@@ -1163,6 +1174,7 @@ SPEC REPOS:
   trunk:
     - abseil
     - BoringSSL-GRPC
+    - ffmpeg-kit-ios-https
     - Firebase
     - FirebaseAppCheckInterop
     - FirebaseAuth
@@ -1186,6 +1198,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
+  ffmpeg_kit_flutter:
+    :path: ".symlinks/plugins/ffmpeg_kit_flutter/ios"
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
@@ -1200,6 +1214,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   sqflite:
     :path: ".symlinks/plugins/sqflite/darwin"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
   video_compress:
     :path: ".symlinks/plugins/video_compress/ios"
   video_player_avfoundation:
@@ -1209,6 +1225,8 @@ SPEC CHECKSUMS:
   abseil: d121da9ef7e2ff4cab7666e76c5a3e0915ae08c3
   BoringSSL-GRPC: 1e2348957acdbcad360b80a264a90799984b2ba6
   cloud_firestore: 9bdbf5a952da93fad19c89f4a497bff41b3f7df2
+  ffmpeg-kit-ios-https: f9c838aa5400a6c5ba12324c6b798f52197ba354
+  ffmpeg_kit_flutter: b4ca70cac3fc1d8ac14cdc660754b60870358732
   Firebase: cec914dab6fd7b1bd8ab56ea07ce4e03dd251c2d
   firebase_auth: 6a09851aca5fcbb1f3745bed7ec88f221c52c3e9
   firebase_core: 57aeb91680e5d5e6df6b888064be7c785f146efb
@@ -1235,6 +1253,7 @@ SPEC CHECKSUMS:
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
+  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
   video_compress: fce97e4fb1dfd88175aa07d2ffc8a2f297f87fbe
   video_player_avfoundation: 7c6c11d8470e1675df7397027218274b6d2360b3
 

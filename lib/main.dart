@@ -1,11 +1,13 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tvst/authentication/view/login_screen.dart';
+import 'package:tvst/view/auth/login_screen.dart';
 import 'package:tvst/consts/theme.dart';
 import 'package:tvst/firebase_options.dart';
-import 'package:tvst/home/home_screen.dart';
+import 'package:tvst/view/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,11 +26,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'TikTok Clone',
+      title: 'TVST',
       debugShowCheckedModeBanner: false,
       darkTheme: AppTheme.darkTheme,
       theme: AppTheme.lightTheme,
-      home: client != null ? HomeScreen() : LoginScreen(),
+      home: client != null ? const HomeScreen() : const LoginScreen(),
     );
   }
 }

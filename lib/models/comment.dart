@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Comment
-{
+class Comment {
   String? userName;
   String? commentText;
   String? userProfileImage;
   String? userID;
   String? commentID;
-  final publishedDateTime;
+  DateTime? publishedDateTime;
   List? commentLikesList;
 
   Comment({
@@ -20,8 +19,7 @@ class Comment
     this.commentLikesList,
   });
 
-  Map<String, dynamic> toJson()=>
-      {
+  Map<String, dynamic> toJson() => {
         "userName": userName,
         "commentText": commentText,
         "userProfileImage": userProfileImage,
@@ -31,8 +29,7 @@ class Comment
         "commentLikesList": commentLikesList,
       };
 
-  static Comment fromDocumentSnapshot(DocumentSnapshot snapshotDoc)
-  {
+  static Comment fromDocumentSnapshot(DocumentSnapshot snapshotDoc) {
     var documentSnapshot = snapshotDoc.data() as Map<String, dynamic>;
 
     return Comment(
