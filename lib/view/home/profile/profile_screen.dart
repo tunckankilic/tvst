@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:tvst/global.dart';
 import 'package:tvst/view/home/profile/followers_screen.dart';
 import 'package:tvst/view/home/profile/following_screen.dart';
+import 'package:tvst/view/home/profile/profile_bindings.dart';
 import 'package:tvst/view/home/profile/profile_controller.dart';
 import 'package:tvst/view/inner_screens/video/video_player_profile.dart';
 import 'package:tvst/view/home/profile/account_settings_screen.dart';
@@ -59,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _handleClickEvent(String choice) {
     switch (choice) {
       case "Settings":
-        Get.to(() => const AccountSettingsScreen());
+        Get.to(() => const AccountSettingsScreen(), binding: ProfileBindings());
         break;
       case "Logout":
         FirebaseAuth.instance.signOut();
@@ -104,10 +105,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     _buildProfileImage(),
                     const SizedBox(height: 16),
                     _buildStatsRow(),
+                    // const SizedBox(height: 16),
+                    // _buildSocialLinks(),
                     const SizedBox(height: 16),
-                    _buildSocialLinks(),
-                    const SizedBox(height: 16),
-                    _buildActionButton(),
+                    _buildActionButton(), const SizedBox(height: 16),
                     _buildVideoGrid(),
                   ],
                 ),

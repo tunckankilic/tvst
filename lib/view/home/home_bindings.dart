@@ -4,6 +4,7 @@ import 'package:tvst/view/home/for_you/controller_for_you_videos.dart';
 import 'package:tvst/view/home/profile/profile_controller.dart';
 import 'package:tvst/view/home/search/search_controller.dart' as search;
 import 'package:tvst/view/home/upload/upload_controller.dart';
+import 'package:tvst/view/inner_screens/comments/comments_controller.dart';
 
 class HomeBindings extends Bindings {
   @override
@@ -13,5 +14,6 @@ class HomeBindings extends Bindings {
     Get.lazyPut(() => UploadController());
     Get.lazyPut(() => ControllerFollowingVideos());
     Get.lazyPut(() => ProfileController());
+    Get.lazyPut(() => CommentsController());
   }
 }

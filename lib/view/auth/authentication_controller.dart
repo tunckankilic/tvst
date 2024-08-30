@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tvst/view/auth/login_screen.dart';
+import 'package:tvst/view/home/home_bindings.dart';
 import 'package:tvst/view/home/home_screen.dart';
 import '../../models/user.dart' as userModel;
 
@@ -91,15 +92,31 @@ class AuthenticationController extends GetxController {
         uid: credential.user!.uid,
       );
 
-      await _firestore
-          .collection("users")
-          .doc(credential.user!.uid)
-          .set(user.toJson());
+      try {
+        await _firestore
+            .collection("users")
+            .doc(credential.user!.uid)
+            .set(user.toJson());
 
-      Get.snackbar(
-          "Account Created", "Your account has been created successfully.");
+        DocumentSnapshot docSnap = await _firestore
+            .collection("users")
+            .doc(credential.user!.uid)
+            .get();
+        if (docSnap.exists) {
+          print("User saved successfully!");
+
+          // Navigate to HomeScreen only after successful signup
+          Get.offAll(() => const HomeScreen(), binding: HomeBindings());
+        } else {
+          Get.snackbar("Error", "User data could not be saved.");
+        }
+      } catch (firestoreError) {
+        print("Firestore error: $firestoreError");
+        Get.snackbar(
+            "Firestore Error", "User data could not be saved: $firestoreError");
+      }
     } catch (error) {
-      Get.snackbar("Account Creation Failed", "Error: $error");
+      Get.snackbar("Signup Failed", "Error: $error");
     } finally {
       showProgressBar.value = false;
     }
@@ -133,12 +150,26 @@ class AuthenticationController extends GetxController {
   Future<void> loginUserNow(String userEmail, String userPassword) async {
     try {
       showProgressBar.value = true;
-      await _auth.signInWithEmailAndPassword(
+
+      // Perform sign in with email and password
+      final UserCredential credential = await _auth.signInWithEmailAndPassword(
         email: userEmail,
         password: userPassword,
       );
-      Get.snackbar("Login Successful", "You're logged in successfully.");
+
+      // Check if user data exists in Firestore
+      final DocumentSnapshot docSnap =
+          await _firestore.collection("users").doc(credential.user!.uid).get();
+      if (docSnap.exists) {
+        // If the user exists in Firestore, navigate to the HomeScreen
+        Get.snackbar("Login Successful", "You have logged in successfully.");
+        Get.offAll(() => const HomeScreen(), binding: HomeBindings());
+      } else {
+        // If user data does not exist in Firestore, show an error
+        Get.snackbar("Error", "User data does not exist in the database.");
+      }
     } catch (error) {
+      // Handle any errors that occur during login
       Get.snackbar("Login Failed", "Error: $error");
     } finally {
       showProgressBar.value = false;

@@ -41,7 +41,6 @@ class CommentsController extends GetxController {
 
       final batch = _firestore.batch();
 
-      // Save new comment
       batch.set(
         _firestore
             .collection("videos")
@@ -51,7 +50,6 @@ class CommentsController extends GetxController {
         commentModel.toJson(),
       );
 
-      // Update comment counter
       final videoDoc = _firestore.collection("videos").doc(currentVideoID);
       batch.update(videoDoc, {
         "totalComments": FieldValue.increment(1),
@@ -69,20 +67,34 @@ class CommentsController extends GetxController {
 
   void retrieveComments() {
     _isLoading.value = true;
-    _commentsList.bindStream(
-      _firestore
-          .collection("videos")
-          .doc(currentVideoID)
-          .collection("comments")
-          .orderBy("publishedDateTime", descending: true)
-          .snapshots()
-          .map((QuerySnapshot commentsSnapshot) {
-        return commentsSnapshot.docs
-            .map((doc) => Comment.fromDocumentSnapshot(doc))
-            .toList();
-      }),
-    );
-    _isLoading.value = false;
+    try {
+      _commentsList.bindStream(
+        _firestore
+            .collection("videos")
+            .doc(currentVideoID)
+            .collection("comments")
+            .orderBy("publishedDateTime", descending: true)
+            .snapshots()
+            .map((QuerySnapshot commentsSnapshot) {
+          return commentsSnapshot.docs
+              .map((doc) {
+                try {
+                  return Comment.fromDocumentSnapshot(doc);
+                } catch (e) {
+                  print("Yorum dönüştürme hatası: $e");
+                  return null;
+                }
+              })
+              .whereType<Comment>()
+              .toList();
+        }),
+      );
+    } catch (e) {
+      print("Yorumları alma hatası: $e");
+      Get.snackbar("Hata", "Yorumlar yüklenirken bir sorun oluştu");
+    } finally {
+      _isLoading.value = false;
+    }
   }
 
   Future<void> likeUnlikeComment(String commentID) async {
@@ -109,7 +121,8 @@ class CommentsController extends GetxController {
         });
       }
     } catch (errorMsg) {
-      Get.snackbar("Error", "Failed to like/unlike comment: $errorMsg");
+      Get.snackbar(
+          "Hata", "Yorum beğenilemedi/beğeni geri alınamadı: $errorMsg");
     }
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tvst/view/auth/registration_screen.dart';
@@ -38,14 +39,19 @@ class LoginScreen extends GetView<AuthenticationController> {
   Widget _buildWelcomeText() {
     return Column(
       children: [
-        Text(
-          "Welcome",
-          style: GoogleFonts.acme(
-              fontSize: 34, color: Colors.grey, fontWeight: FontWeight.bold),
+        CircleAvatar(
+          radius: 30.r,
+          backgroundImage: AssetImage(
+            "images/512.png",
+          ),
+        ),
+        const SizedBox(
+          height: 16,
         ),
         Text(
-          "Glad to see you!",
-          style: GoogleFonts.acme(fontSize: 28, color: Colors.grey),
+          "Welcome to TVST",
+          style: GoogleFonts.acme(
+              fontSize: 34, color: Colors.grey, fontWeight: FontWeight.bold),
         ),
       ],
     );

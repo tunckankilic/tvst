@@ -215,32 +215,32 @@ class ForYouVideoScreen extends GetView<ControllerForYouVideos> {
                                   ],
                                 ),
 
-                                //share button - total shares
-                                Column(
-                                  children: [
-                                    //share button
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.share,
-                                        size: 40,
-                                        color: Colors.white,
-                                      ),
-                                    ),
+                                // //share button - total shares
+                                // Column(
+                                //   children: [
+                                //     //share button
+                                //     IconButton(
+                                //       onPressed: () {},
+                                //       icon: const Icon(
+                                //         Icons.share,
+                                //         size: 40,
+                                //         color: Colors.white,
+                                //       ),
+                                //     ),
 
-                                    //total shares
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
-                                      child: Text(
-                                        eachVideoInfo.totalShares.toString(),
-                                        style: const TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                //     //total shares
+                                //     Padding(
+                                //       padding: const EdgeInsets.only(left: 8.0),
+                                //       child: Text(
+                                //         eachVideoInfo.totalShares.toString(),
+                                //         style: const TextStyle(
+                                //           fontSize: 20,
+                                //           color: Colors.white,
+                                //         ),
+                                //       ),
+                                //     ),
+                                //   ],
+                                // ),
 
                                 //profile circular animation
                                 Padding(

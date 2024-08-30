@@ -29,6 +29,9 @@ class AccountSettingsScreen extends GetView<ProfileController> {
               if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
               }
+              if (!snapshot.hasData || snapshot.data == null) {
+                return const Center(child: Text('No data available'));
+              }
               return SingleChildScrollView(
                 padding: const EdgeInsets.all(20),
                 child: Column(
@@ -41,7 +44,7 @@ class AccountSettingsScreen extends GetView<ProfileController> {
                       style: TextStyle(fontSize: 22, color: Colors.grey),
                     ),
                     const SizedBox(height: 20),
-                    _buildSocialInputs(controllerProfile, context),
+                    _buildSocialInputs(controllerProfile),
                     const SizedBox(height: 30),
                     _buildUpdateButton(controllerProfile),
                   ],
@@ -80,8 +83,7 @@ class AccountSettingsScreen extends GetView<ProfileController> {
     );
   }
 
-  Widget _buildSocialInputs(
-      ProfileController controller, BuildContext context) {
+  Widget _buildSocialInputs(ProfileController controller) {
     final socialInputs = [
       {
         'label': 'facebook.com/username',

@@ -10,6 +10,8 @@ import 'package:tvst/view/home/home_screen.dart';
 import 'package:path/path.dart' as path;
 
 class ProfileController extends GetxController {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   final Rx<Map<String, dynamic>> _userMap = Rx<Map<String, dynamic>>({});
   Map<String, dynamic> get userMap => _userMap.value;
   final Rx<String> _userID = "".obs;
@@ -32,6 +34,75 @@ class ProfileController extends GetxController {
     _userID.value = visitUserID;
 
     retrieveUserInformation();
+  }
+
+  Future<void> followUser(String userIDToFollow) async {
+    // Update the follower's collection in the target user document
+    await _firestore
+        .collection("users")
+        .doc(userIDToFollow)
+        .collection("followers")
+        .doc(currentUserID)
+        .set({
+      "userID": currentUserID,
+      "followedAt": Timestamp.now(),
+    });
+
+    // Update the following collection in the current user document
+    await _firestore
+        .collection("users")
+        .doc(currentUserID)
+        .collection("following")
+        .doc(userIDToFollow)
+        .set({
+      "userID": userIDToFollow,
+      "followedAt": Timestamp.now(),
+    });
+
+    // Update follower and following count
+    await _updateFollowerAndFollowingCount(userIDToFollow, increment: true);
+  }
+
+  Future<void> unFollowUser(String userIDToUnfollow) async {
+    // Remove from the follower's collection in the target user document
+    await _firestore
+        .collection("users")
+        .doc(userIDToUnfollow)
+        .collection("followers")
+        .doc(currentUserID)
+        .delete();
+
+    // Remove from the following collection in the current user document
+    await _firestore
+        .collection("users")
+        .doc(currentUserID)
+        .collection("following")
+        .doc(userIDToUnfollow)
+        .delete();
+
+    // Update follower and following count
+    await _updateFollowerAndFollowingCount(userIDToUnfollow, increment: false);
+  }
+
+  Future<void> _updateFollowerAndFollowingCount(String userIDToFollowOrUnfollow,
+      {required bool increment}) async {
+    final incrementValue = increment ? 1 : -1;
+
+    // Update follower count in target user document
+    final userDocRef =
+        _firestore.collection("users").doc(userIDToFollowOrUnfollow);
+    await userDocRef.update({
+      "totalFollowers": FieldValue.increment(incrementValue),
+    });
+
+    // Update following count in current user document
+    final currentUserDocRef = _firestore.collection("users").doc(currentUserID);
+    await currentUserDocRef.update({
+      "totalFollowing": FieldValue.increment(incrementValue),
+    });
+
+    // Refresh the user data to reflect the new follower/following counts
+    await getCurrentUserData();
   }
 
   // ProfileController sınıfına eklenecek yeni fonksiyon
@@ -322,20 +393,36 @@ class ProfileController extends GetxController {
   }
 
   getCurrentUserData() async {
-    DocumentSnapshot snapshotUser = await FirebaseFirestore.instance
-        .collection("users")
-        .doc(currentUserID)
-        .get();
+    try {
+      DocumentSnapshot snapshotUser = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(currentUserID)
+          .get();
 
-    facebook = snapshotUser["facebook"];
-    youtube = snapshotUser["youtube"];
-    instagram = snapshotUser["instagram"];
-    twitter = snapshotUser["twitter"];
-    userImageUrl = snapshotUser["image"];
-    facebookTextEditingController.text = facebook ?? "";
-    youtubeTextEditingController.text = youtube ?? "";
-    instagramTextEditingController.text = instagram ?? "";
-    twitterTextEditingController.text = twitter ?? "";
-    update();
+      if (!snapshotUser.exists) {
+        Get.snackbar("Error", "User data not found");
+        return;
+      }
+
+      facebook = snapshotUser["facebook"];
+      youtube = snapshotUser["youtube"];
+      instagram = snapshotUser["instagram"];
+      twitter = snapshotUser["twitter"];
+      userImageUrl = snapshotUser["image"];
+      facebookTextEditingController.text = facebook ?? "";
+      youtubeTextEditingController.text = youtube ?? "";
+      instagramTextEditingController.text = instagram ?? "";
+      twitterTextEditingController.text = twitter ?? "";
+      update();
+    } catch (e) {
+      Get.snackbar("Error", "Failed to load user data: $e");
+      print("Error in getCurrentUserData: $e");
+    }
+  }
+
+  @override
+  void onInit() {
+    getCurrentUserData();
+    super.onInit();
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -18,6 +19,53 @@ class AppColors {
 
 // Tema tanımlamaları
 class AppTheme {
+  static final ThemeData theme = ThemeData(
+    primaryColor: Color(0xFF1E88E5), // Koyu arka plan
+    scaffoldBackgroundColor: Color(0xFF121212),
+    textTheme: TextTheme(
+      displayLarge: TextStyle(
+        color: Colors.white,
+        fontSize: 24.sp,
+        fontWeight: FontWeight.bold,
+      ),
+      displayMedium: TextStyle(
+        color: Colors.white,
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w600,
+      ),
+      bodyLarge: TextStyle(
+        color: Colors.white,
+        fontSize: 16.sp,
+      ),
+      bodyMedium: TextStyle(
+        color: Colors.white70,
+        fontSize: 14.sp,
+      ),
+    ),
+    iconTheme: IconThemeData(
+      color: Colors.white,
+      size: 24.sp,
+    ),
+    buttonTheme: ButtonThemeData(
+      buttonColor: Color(0xFF1E88E5),
+      textTheme: ButtonTextTheme.primary,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.r),
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      fillColor: Colors.white10,
+      filled: true,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.r),
+        borderSide: BorderSide.none,
+      ),
+      hintStyle: TextStyle(color: Colors.white54),
+    ),
+    colorScheme: ColorScheme.fromSwatch()
+        .copyWith(secondary: Color(0xFFFFA000))
+        .copyWith(background: Color(0xFF121212)),
+  );
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: AppColors.primaryLight,

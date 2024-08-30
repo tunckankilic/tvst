@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tvst/global.dart';
+import 'package:tvst/view/auth/authentication_bindings.dart';
+import 'package:tvst/view/auth/login_screen.dart';
 import 'package:tvst/view/home/following/followings_video_screen.dart';
 import 'package:tvst/view/home/for_you/for_you_video_screen.dart';
 import 'package:tvst/view/home/profile/profile_screen.dart';
@@ -69,6 +73,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: screensList[screenIndex],
+      // floatingActionButton: FloatingActionButton(onPressed: () async {
+      //   await FirebaseAuth.instance.signOut();
+      //   Get.to(LoginScreen());
+      // }),
     );
   }
 }
