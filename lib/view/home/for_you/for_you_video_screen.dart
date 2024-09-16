@@ -12,6 +12,7 @@ class ForYouVideoScreen extends GetView<ControllerForYouVideos> {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => ControllerForYouVideos());
     return Scaffold(
       body: Obx(() {
         return PageView.builder(

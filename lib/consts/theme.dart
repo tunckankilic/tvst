@@ -3,112 +3,192 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-// Tema renkleri
-class AppColors {
-  static const Color primaryLight = Color(0xFF00F2EA);
-  static const Color primaryDark = Color(0xFF00D2FF);
-  static const Color secondaryLight = Color(0xFFFF0050);
-  static const Color secondaryDark = Color(0xFFFF3B70);
-  static const Color backgroundLight = Color(0xFFFFFFFF);
-  static const Color backgroundDark = Color(0xFF121212);
-  static const Color surfaceLight = Color(0xFFF0F0F0);
-  static const Color surfaceDark = Color(0xFF1E1E1E);
-  static const Color textLight = Color(0xFF000000);
-  static const Color textDark = Color(0xFFFFFFFF);
-}
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-// Tema tanımlamaları
 class AppTheme {
-  static final ThemeData theme = ThemeData(
-    primaryColor: Color(0xFF1E88E5), // Koyu arka plan
-    scaffoldBackgroundColor: Color(0xFF121212),
-    textTheme: TextTheme(
-      displayLarge: TextStyle(
+  static ThemeData get lightTheme {
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: const Color(0xFF1A237E),
+        primary: const Color(0xFF1A237E),
+        secondary: const Color(0xFFFF5722),
+        background: const Color(0xFFF5F5F5),
+        surface: Colors.white,
+        onPrimary: Colors.white,
+        onSecondary: Colors.white,
+        onBackground: const Color(0xFF333333),
+        onSurface: const Color(0xFF333333),
+      ),
+      textTheme: TextTheme(
+        displayLarge: GoogleFonts.montserrat(
+          fontSize: 32,
+          fontWeight: FontWeight.bold,
+          color: const Color(0xFF333333),
+        ),
+        displayMedium: GoogleFonts.montserrat(
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+          color: const Color(0xFF333333),
+        ),
+        displaySmall: GoogleFonts.montserrat(
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+          color: const Color(0xFF333333),
+        ),
+        headlineMedium: GoogleFonts.montserrat(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: const Color(0xFF333333),
+        ),
+        bodyLarge: GoogleFonts.roboto(
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
+          color: const Color(0xFF333333),
+        ),
+        bodyMedium: GoogleFonts.roboto(
+          fontSize: 14,
+          fontWeight: FontWeight.normal,
+          color: const Color(0xFF333333),
+        ),
+      ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: const Color(0xFF1A237E),
+        foregroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        titleTextStyle: GoogleFonts.montserrat(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+      cardTheme: CardTheme(
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         color: Colors.white,
-        fontSize: 24.sp,
-        fontWeight: FontWeight.bold,
       ),
-      displayMedium: TextStyle(
-        color: Colors.white,
-        fontSize: 20.sp,
-        fontWeight: FontWeight.w600,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFFF5722),
+          foregroundColor: Colors.white,
+          textStyle: GoogleFonts.roboto(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
       ),
-      bodyLarge: TextStyle(
-        color: Colors.white,
-        fontSize: 16.sp,
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0xFF1A237E)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0xFFFF5722), width: 2),
+        ),
+        filled: true,
+        fillColor: Colors.white,
+        labelStyle: GoogleFonts.roboto(color: const Color(0xFF333333)),
       ),
-      bodyMedium: TextStyle(
-        color: Colors.white70,
-        fontSize: 14.sp,
-      ),
-    ),
-    iconTheme: IconThemeData(
-      color: Colors.white,
-      size: 24.sp,
-    ),
-    buttonTheme: ButtonThemeData(
-      buttonColor: Color(0xFF1E88E5),
-      textTheme: ButtonTextTheme.primary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.r),
-      ),
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      fillColor: Colors.white10,
-      filled: true,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8.r),
-        borderSide: BorderSide.none,
-      ),
-      hintStyle: TextStyle(color: Colors.white54),
-    ),
-    colorScheme: ColorScheme.fromSwatch()
-        .copyWith(secondary: Color(0xFFFFA000))
-        .copyWith(background: Color(0xFF121212)),
-  );
-  static final ThemeData lightTheme = ThemeData(
-    brightness: Brightness.light,
-    primaryColor: AppColors.primaryLight,
-    scaffoldBackgroundColor: AppColors.backgroundLight,
-    colorScheme: const ColorScheme.light(
-      primary: AppColors.primaryLight,
-      secondary: AppColors.secondaryLight,
-      surface: AppColors.surfaceLight,
-      onPrimary: AppColors.textLight,
-      onSecondary: AppColors.textLight,
-      onSurface: AppColors.textLight,
-    ),
-    appBarTheme: const AppBarTheme(
-      color: AppColors.primaryLight,
-      iconTheme: IconThemeData(color: AppColors.textLight),
-    ),
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(color: AppColors.textLight),
-      bodyMedium: TextStyle(color: AppColors.textLight),
-    ),
-  );
+      iconTheme: const IconThemeData(color: Color(0xFF1A237E)),
+    );
+  }
 
-  static final ThemeData darkTheme = ThemeData(
-    brightness: Brightness.dark,
-    primaryColor: AppColors.primaryDark,
-    scaffoldBackgroundColor: AppColors.backgroundDark,
-    colorScheme: const ColorScheme.dark(
-      primary: AppColors.primaryDark,
-      secondary: AppColors.secondaryDark,
-      surface: AppColors.surfaceDark,
-      onPrimary: AppColors.textDark,
-      onSecondary: AppColors.textDark,
-      onSurface: AppColors.textDark,
-    ),
-    appBarTheme: const AppBarTheme(
-      color: AppColors.primaryDark,
-      iconTheme: IconThemeData(color: AppColors.textDark),
-    ),
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(color: AppColors.textDark),
-      bodyMedium: TextStyle(color: AppColors.textDark),
-    ),
-  );
+  static ThemeData get darkTheme {
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: const Color(0xFF1A237E),
+        brightness: Brightness.dark,
+        primary: const Color(0xFF3949AB),
+        secondary: const Color(0xFFFF7043),
+        background: const Color(0xFF121212),
+        surface: const Color(0xFF1E1E1E),
+        onPrimary: Colors.white,
+        onSecondary: Colors.white,
+        onBackground: Colors.white,
+        onSurface: Colors.white,
+      ),
+      textTheme: TextTheme(
+        displayLarge: GoogleFonts.montserrat(
+          fontSize: 32,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+        displayMedium: GoogleFonts.montserrat(
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+        displaySmall: GoogleFonts.montserrat(
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
+        headlineMedium: GoogleFonts.montserrat(
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
+        bodyLarge: GoogleFonts.roboto(
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
+          color: Colors.white,
+        ),
+        bodyMedium: GoogleFonts.roboto(
+          fontSize: 14,
+          fontWeight: FontWeight.normal,
+          color: Colors.white,
+        ),
+      ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: const Color(0xFF1A237E),
+        foregroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        titleTextStyle: GoogleFonts.montserrat(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+      cardTheme: CardTheme(
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        color: const Color(0xFF1E1E1E),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFFF7043),
+          foregroundColor: Colors.white,
+          textStyle: GoogleFonts.roboto(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0xFF3949AB)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Color(0xFFFF7043), width: 2),
+        ),
+        filled: true,
+        fillColor: const Color(0xFF2C2C2C),
+        labelStyle: GoogleFonts.roboto(color: Colors.white70),
+      ),
+      iconTheme: const IconThemeData(color: Color(0xFF3949AB)),
+    );
+  }
 }
 
 // Tema kontrolcüsü

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tvst/consts/theme.dart';
 import 'package:tvst/view/auth/registration_screen.dart';
 import 'package:tvst/view/widgets/input_text_widget.dart';
 import 'authentication_controller.dart';
@@ -25,9 +26,9 @@ class LoginScreen extends GetView<AuthenticationController> {
                 const SizedBox(height: 20),
                 _buildPasswordInput(),
                 const SizedBox(height: 30),
-                _buildLoginButton(),
+                _buildLoginButton(context),
                 const SizedBox(height: 15),
-                _buildSignUpPrompt(),
+                _buildSignUpPrompt(context),
               ],
             ),
           ),
@@ -36,22 +37,57 @@ class LoginScreen extends GetView<AuthenticationController> {
     );
   }
 
+  Widget _buildLoginButton(BuildContext context) {
+    return Obx(
+      () => controller.showProgressBar.value
+          ? CircularProgressIndicator(
+              color: Theme.of(context).colorScheme.secondary)
+          : ElevatedButton(
+              onPressed: _handleLogin,
+              child: Text(
+                "Login",
+                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
+              ),
+            ),
+    );
+  }
+
+  Widget _buildSignUpPrompt(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("Don't have an Account? ",
+            style: TextStyle(fontSize: 14.sp, color: Colors.grey)),
+        GestureDetector(
+          onTap: () => Get.to(() => const RegistrationScreen()),
+          child: Text(
+            "Sign Up Now",
+            style: TextStyle(
+              fontSize: 16.sp,
+              color: Theme.of(context).colorScheme.secondary,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget _buildWelcomeText() {
     return Column(
       children: [
         CircleAvatar(
-          radius: 30.r,
-          backgroundImage: AssetImage(
-            "images/512.png",
-          ),
+          radius: 40.r,
+          backgroundImage: AssetImage("images/512.png"),
         ),
-        const SizedBox(
-          height: 16,
-        ),
+        SizedBox(height: 16.h),
         Text(
           "Welcome to TVST",
-          style: GoogleFonts.acme(
-              fontSize: 34, color: Colors.grey, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            fontSize: 28.sp,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ],
     );
@@ -75,30 +111,6 @@ class LoginScreen extends GetView<AuthenticationController> {
     );
   }
 
-  Widget _buildLoginButton() {
-    return Obx(
-      () => controller.showProgressBar.value
-          ? const CircularProgressIndicator()
-          : ElevatedButton(
-              onPressed: _handleLogin,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-              ),
-              child: const Text(
-                "Login",
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w700),
-              ),
-            ),
-    );
-  }
-
   void _handleLogin() {
     if (controller.emailController.text.isNotEmpty &&
         controller.passwordController.text.isNotEmpty) {
@@ -110,23 +122,5 @@ class LoginScreen extends GetView<AuthenticationController> {
     } else {
       Get.snackbar("Error", "Please fill in all fields");
     }
-  }
-
-  Widget _buildSignUpPrompt() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text("Don't have an Account? ",
-            style: TextStyle(fontSize: 16, color: Colors.grey)),
-        GestureDetector(
-          onTap: () => Get.to(() => const RegistrationScreen()),
-          child: const Text(
-            "Sign Up Now",
-            style: TextStyle(
-                fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ],
-    );
   }
 }

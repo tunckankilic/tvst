@@ -56,11 +56,10 @@ class SearchScreen extends GetView<sa.SearchController> {
 
   Widget _buildEmptyState(BuildContext context) {
     return Center(
-      child: Image.asset(
-        "images/search.png",
-        width: MediaQuery.of(context).size.width * .5,
-      ),
-    );
+        child: Text(
+      "There is no Search Results",
+      style: Theme.of(context).textTheme.displaySmall,
+    ));
   }
 
   Widget _buildSearchResults() {

@@ -124,9 +124,9 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              "images/upload.png",
-              width: 260,
+            Text(
+              "Video Upload Section",
+              style: Theme.of(context).textTheme.displaySmall,
             ),
             const SizedBox(height: 20),
             ElevatedButton.icon(

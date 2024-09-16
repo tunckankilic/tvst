@@ -29,13 +29,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
+      designSize: const Size(360, 690),
       minTextAdapt: true,
       builder: (context, child) {
         return GetMaterialApp(
           title: 'TVST',
           debugShowCheckedModeBanner: false,
-          theme: AppTheme.theme,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.system,
           home: client != null ? const HomeScreen() : const LoginScreen(),
           initialBinding:
               client != null ? HomeBindings() : AuthenticationBindings(),
